@@ -1,0 +1,27 @@
+syntax = "proto3";
+
+package datamover;
+
+service FileMover {
+  // Store a file in Campaign Storage
+  rpc Store (StoreFile) returns (MoveStatus) {}
+  // Retrieve a file from Campaign Storage
+  rpc Retrieve (RetrieveFile) returns (MoveStatus) {}
+}
+
+// Source is full path of the customer source side of the file
+// Destination is full path of the Campaign Storage file.
+message StoreFile {
+  string sourcePath = 1;
+  string destinationPath = 2;
+}
+
+message RetrieveFile {
+  string sourcePath = 1;
+  string destinationPath = 2;
+}
+
+// The response message containing the greetings
+message MoveStatus {
+  int32 status = 1;
+}
